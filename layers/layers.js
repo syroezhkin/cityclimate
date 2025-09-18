@@ -1,3 +1,5 @@
+ol.proj.proj4.register(proj4);
+//ol.proj.get("").setExtent([-5819899.258666, -1576468.573704, 5197633.699859, 4425187.537913]);
 var wms_layers = [];
 
 var lyr_01_snow_modified_0 = new ol.layer.Image({
@@ -265,9 +267,9 @@ var lyr_01_snow_modified_0 = new ol.layer.Image({
         source: new ol.source.ImageStatic({
             url: "./layers/01_snow_modified_0.png",
             attributions: ' ',
-            projection: 'EPSG:3857',
+            projection: '',
             alwaysInRange: true,
-            imageExtent: [-19989584.628454, 3285829.666022, 20005882.473600, 25701922.096135]
+            imageExtent: [-4879120.862948, -959298.464377, 3855024.571885, 3796416.757859]
         })
     });
 var lyr_01a_snow_modified_1 = new ol.layer.Image({
@@ -826,14 +828,18 @@ var lyr_01c_snow_modified_3 = new ol.layer.Image({
     });
 var format__4 = new ol.format.GeoJSON();
 var features__4 = format__4.readFeatures(json__4, 
-            {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'});
+            {dataProjection: 'EPSG:4326', featureProjection: ''});
 var jsonSource__4 = new ol.source.Vector({
     attributions: ' ',
 });
 jsonSource__4.addFeatures(features__4);
+cluster__4 = new ol.source.Cluster({
+  distance: 30,
+  source: jsonSource__4
+});
 var lyr__4 = new ol.layer.Vector({
                 declutter: false,
-                source:jsonSource__4, 
+                source:cluster__4, 
                 style: style__4,
                 popuplayertitle: 'Снеговой район',
                 interactive: true,
